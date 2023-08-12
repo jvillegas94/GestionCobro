@@ -1,0 +1,155 @@
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\GestionCobro.dll.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\GestionCobro.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\GestionCobro.pdb
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\FlashControlV71.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\Sap.Data.Hana.v4.5.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\ShockwaveFlashObjects.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\stdole.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\Sap.Data.Hana.v4.5.xml
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\Sap.Data.Hana.v4.5.dll.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\obj\Release\GestionCobro.csproj.CoreCompileInputs.cache
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\obj\Release\GestionCobro.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\obj\Release\GestionCobro.pdb
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\csc.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\csc.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\csc.rsp
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\csi.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\csi.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\csi.rsp
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.AppContext.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Console.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.IO.Compression.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.IO.Pipes.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.Claims.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Threading.Thread.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.ValueTuple.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Xml.XPath.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\vbc.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\vbc.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\vbc.rsp
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\VBCSCompiler.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\bin\AjaxControlToolkit.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\obj\Release\GestionCobro.csprojAssemblyReference.cache
+C:\Users\luis.bolanos\source\repos\GestionCobro\GestionCobro\obj\Release\GestionCobro.csproj.CopyComplete
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\GestionCobro.dll.config
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\GestionCobro.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\GestionCobro.pdb
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\csc.exe
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\csc.exe.config
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\csc.rsp
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\csi.exe
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\csi.exe.config
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\csi.rsp
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.CSharp.Core.targets
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\Microsoft.Win32.Primitives.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.AppContext.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Collections.Immutable.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Console.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Diagnostics.Process.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Diagnostics.StackTrace.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.IO.Compression.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.IO.FileSystem.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.IO.FileSystem.Primitives.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.IO.Pipes.AccessControl.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.IO.Pipes.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Reflection.Metadata.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.AccessControl.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.Claims.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.Encoding.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.Primitives.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Security.Principal.Windows.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Text.Encoding.CodePages.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Threading.Thread.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.ValueTuple.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Xml.ReaderWriter.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Xml.XmlDocument.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Xml.XPath.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\System.Xml.XPath.XDocument.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\vbc.exe
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\vbc.exe.config
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\vbc.rsp
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\VBCSCompiler.exe
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\roslyn\VBCSCompiler.exe.config
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\AjaxControlToolkit.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\FlashControlV71.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Sap.Data.Hana.v4.5.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\ShockwaveFlashObjects.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\stdole.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Sap.Data.Hana.v4.5.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Sap.Data.Hana.v4.5.dll.config
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\GestionCobro.csprojAssemblyReference.cache
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\Interop.SAPbouiCOM.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\GestionCobro.csproj.ResolveComReference.cache
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\GestionCobro.csproj.CoreCompileInputs.cache
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\GestionCobro.csproj.CopyComplete
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\GestionCobro.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\obj\Release\GestionCobro.pdb
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Archivos\FacturasProcesadas.json
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Microsoft.Bcl.AsyncInterfaces.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Newtonsoft.Json.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Buffers.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Memory.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Numerics.Vectors.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Runtime.CompilerServices.Unsafe.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Text.Encodings.Web.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Text.Json.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Threading.Tasks.Extensions.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.ValueTuple.dll
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Microsoft.Bcl.AsyncInterfaces.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\Newtonsoft.Json.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Buffers.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Memory.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Numerics.Vectors.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Runtime.CompilerServices.Unsafe.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Text.Encodings.Web.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Text.Json.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.Threading.Tasks.Extensions.xml
+\\Servidor\Grupo Empagro\Tecnologia Informacion\Luis\Visual Studio\GestionCobro\GestionCobro\bin\System.ValueTuple.xml

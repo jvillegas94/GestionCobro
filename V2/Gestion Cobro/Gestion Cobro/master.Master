@@ -1,0 +1,313 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="master.master.cs" Inherits="Gestion_Cobro.master" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+  <title>Gestion de Cobro | Empagro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="Head" runat="server"></asp:ContentPlaceHolder>
+    <style>
+       
+        body {
+  padding-left:1px;
+  width:99.2%;
+}
+.lite{
+
+    color:  coral !important;
+
+}
+a.logo {
+    font-size: 22px;
+    font-weight: 300;
+    color: white;
+    float: none;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+
+
+a.logo:hover, a.logo:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+
+
+a.logo span {
+    color: black;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 99.2%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  line-height: 30px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+.footer > .container {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+ .modalBackground {
+            background-color: Black;
+            filter: alpha(opacity=90);
+            opacity: 0.8;
+        }
+
+        .modalPopup {
+            border-width: 3px;
+            border-style: solid;
+            padding-top: 10px;
+            padding-left: 10px;
+            width: 300px;
+            height: 140px;
+        }
+
+        .btnpopup {
+            display: none;
+        }
+        .login-form {
+		width: 340px;
+    	margin: 50px auto;
+	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+    }
+    
+          input{
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+    
+          submit{
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+          select{
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+  }
+  
+  input:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+  submit:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+  select:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+         .inputWithIcon input{
+    padding-left:40px;
+  }
+         .inputWithIcon select{
+    padding-left:40px;
+  }
+         .inputWithIcon submit{
+    padding-left:40px;
+  }
+  
+  .inputWithIcon{
+    position:relative;
+  }
+  
+  .inputWithIcon i{
+    position:absolute;
+    left:0;
+    top:15px;
+    padding:9px 8px;
+    color:#aaa;
+    transition:.3s;
+  }
+  
+  .inputWithIcon input:focus + i{
+    color:dodgerBlue;
+  }
+  .inputWithIcon submit:focus + i{
+    color:dodgerBlue;
+  }
+  
+  .inputWithIcon.inputIconBg i{
+    background-color:#aaa;
+    color:#fff;
+    padding:9px 4px;
+    border-radius:4px 0 0 4px;
+  }
+  
+  .inputWithIcon.inputIconBg input:focus + i{
+    color:#fff;
+    background-color:dodgerBlue;
+  }
+  .inputWithIcon.inputIconBg submit:focus + i{
+    color:#fff;
+    background-color:dodgerBlue;
+  }
+  .inputWithIcon.inputIconBg select:focus + i{
+    color:#fff;
+    background-color:dodgerBlue;
+  }
+  .myGridClass {
+  width: 100%;
+  /*this will be the color of the odd row*/
+  background-color: #fff;
+  margin: 5px 0 10px 0;
+  border: solid 1px #525252;
+  border-collapse:collapse;
+}
+
+/*data elements*/
+.myGridClass td {
+  padding: 2px;
+  border: solid 1px #c1c1c1;
+  color: #717171;
+}
+
+/*header elements*/
+.myGridClass th {
+  padding: 4px 2px;
+  color: #fff;
+  background: #424242;
+  border-left: solid 1px #525252;
+  font-size: 0.9em;
+}
+
+/*his will be the color of even row*/
+.myGridClass .myAltRowClass { background: #fcfcfc repeat-x top; }
+
+/*and finally, we style the pager on the bottom*/
+.myGridClass .myPagerClass { background: #424242; }
+
+.myGridClass .myPagerClass table { margin: 5px 0; }
+
+.myGridClass .myPagerClass td {
+  border-width: 0;
+  padding: 0 6px;
+  border-left: solid 1px #666;
+  font-weight: bold;
+  color: #fff;
+  line-height: 12px;
+}
+
+.myGridClass .myPagerClass a { color: #666; text-decoration: none; }
+
+.myGridClass .myPagerClass a:hover { color: #000; text-decoration: none; } 
+    </style>
+</head>
+<body>
+    <form runat="server">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <header  style="text-align:center;background-color:steelblue;width:100%"class="header dark-bg">
+      <a href="default.aspx" class="logo">Gestión<span class="lite">Cobro</span></a>
+</header></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <ul class=" nav nav-pills navbar-default">
+        <li runat="server" id="Inicio"  title="Inicio"><a href="default.aspx"><i class="fa fa-2x fa-home"></i></a></li>
+        <li runat="server" visible="false" id="Nuevo" title="Nuevo Documento"><a href="nuevo.aspx"><i class="fa fa-2x fa-file"></i></a></li>
+          <li class=" fa-flip-vertical"></li>
+        <li runat="server" visible="false" id="Liquidación" title="Liquidación"><a href="#"><i class="fa fa-2x fa-money"></i></a></li>
+        <li runat="server" visible="false" id="Buscar" title="Buscar"><a href="#"><i class="fa fa-2x fa-search"></i></a></li>
+        <li runat="server" visible="false" id="Bitacora" title="Bitácora"><a href="#"><i class="fa fa-2x fa-book"></i></a></li>
+        <li runat="server" visible="false" id="Resumen"  title="Resumen" ><a href="#"><i  class="fa fa-2x fa-tasks"></i></a></li>
+        <li  class="nav pull-right top-menu" runat="server" id="Sesion"  title="Iniciar Sesión" >
+            <asp:LinkButton OnClick="btnShow_Click" Visible="false" runat="server" ID="lnkIniciar"><i class="fa fa-2x fa-sign-in "></i>
+            </asp:LinkButton>
+            <asp:LinkButton OnClick="LinkButton1_Click" Visible="false" runat="server" ID="LinkButton1"><i class="fa fa-2x fa-sign-out "></i></asp:LinkButton></li>
+      </ul>
+        <!-- notificatoin dropdown start-->
+        <ul>
+            </ul>
+            </div>
+  </div>
+    <div class="row">
+          <div class="col-lg-12">
+            <ol class="breadcrumb" style="background-color:steelblue;color:white">
+              <li><i class="fa fa-home"></i><a style="color:white" href="default.aspx"> Inicio</a></li>
+              <li><i class="fa fa-arrow-circle-o-right"></i><a style="color:white"  href="#"> <asp:Label runat="server" ID="lblPage"></asp:Label></a></li>
+              <li style=""><i class="fa fa-user"></i><a style="color:white" > <asp:Label runat="server" ID="lblUsuario"></asp:Label></a></li>
+            </ol>
+          </div>
+        </div>
+<div class="">
+    <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    <footer class="footer" style="background-color:steelblue">
+      <!-- Copyright-->
+    <div class="text-center" style="color:white">
+        © <%=DateTime.Now.Year %>
+        Elaborado por <a style="color: sandybrown" href="mailto:lbolanos@empagro.com?subject=Sistema%20Gestión%20Cobro%20 - <%=DateTime.Now.ToString("dd/MM/yyyy") %> (<%=Page.Title%>)"
+            <strong>Ing. Luis Miguel Bolaños Mejías</strong>
+        </a>
+    </div>
+    <!--/.Copyright -->
+
+</footer>
+<!--/.Footer-->
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <!-- ModalPopupExtender -->
+        <ajaxToolkit:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="lnkIniciar" CancelControlID="btnClose" BackgroundCssClass="modalBackground"></ajaxToolkit:ModalPopupExtender>
+        <asp:Panel ID="Panel1" DefaultButton="btnIniciar" runat="server" CssClass="modalPopup" align="center" Style="display: none">
+                <div class="login-form" style="position:fixed;top:20px">
+    <div>
+        <h2 class="text-center" style="color:white"><i class="fa fa-2x fa-lock"></i></h2>       
+        <div class="form-group">
+            <asp:TextBox runat="server" CssClass="form-control" placeholder="Usuario" required="required" ID="txtUsuario"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <asp:TextBox type="password"  runat="server" CssClass="form-control" placeholder="Clave" required="required" ID="txtClave"></asp:TextBox>
+        </div>
+        <div class="form-group">
+                <asp:Button ID="btnIniciar" OnClick="btnIniciar_Click" CssClass="btn btn-primary btn-block" runat="server" Text="Iniciar Sesión" />
+                <asp:Button ID="btnClose" CssClass="btn btn-warning btn-block" runat="server" Text="Cerrar" />
+        </div>      
+    </div>
+</div>
+            </asp:Panel>
+    </form>
+
+</body>
+</html>

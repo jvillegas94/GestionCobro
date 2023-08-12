@@ -1,0 +1,14 @@
+{
+  "ServerUri": "https://sonarcloud.io",
+  "Organization": {
+    "Key": "luismbm89-github",
+    "Name": "luismbm89"
+  },
+  "ProjectKey": "DemoSonar",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AWLvDp4KX0BbYiea-_Sk",
+      "ProfileTimestamp": "2018-03-27T08:39:47-06:00"
+    }
+  }
+}

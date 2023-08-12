@@ -1,0 +1,59 @@
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Gestion Cobro.dll.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Gestion Cobro.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Gestion Cobro.pdb
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\obj\Debug\Gestion Cobro.csprojResolveAssemblyReference.cache
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\obj\Debug\Gestion Cobro.csproj.CoreCompileInputs.cache
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\obj\Debug\Gestion Cobro.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\obj\Debug\Gestion Cobro.pdb
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\AjaxControlToolkit.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\csc.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\csc.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\csc.rsp
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\csi.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\csi.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\csi.rsp
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.AppContext.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Console.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.IO.Compression.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.IO.Pipes.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.Claims.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.ValueTuple.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Xml.XPath.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\vbc.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\vbc.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\vbc.rsp
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\VBCSCompiler.exe
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Sap.Data.Hana.v4.5.dll
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Sap.Data.Hana.v4.5.xml
+C:\Users\luis.bolanos\source\repos\GestionCobro\V2\Gestion Cobro\Gestion Cobro\bin\Sap.Data.Hana.v4.5.dll.config
