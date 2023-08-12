@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -22,42 +23,71 @@ namespace GestionCobro
         {
             if (!Page.IsPostBack)
             {
-                if (Session["user"].ToString().Equals("Depto TI | Empagro"))
+                if (Session["dpto"] != null)
                 {
-                    txtFecha.Enabled = true;
+                    CargarDatos();
+                    CargarFacturacion();
+                    this.Label1.Text = Session["dpto"].ToString();
                 }
-                else
-                {
-                    txtFecha.Enabled = false;
-                }
-                String pfecha = Configuracion.get(Server.MapPath("Archivos/configuracion.json")).Fecha;
-                txtFecha.Text = pfecha;
-                GetList();
-                CargarDatos(txtBuscar.Text);
-                CargarProcesadas();
-            }
-            else {
-
-                txtBuscar.Focus();
             }
         }
 
-        protected void Timer1_Tick(object sender, EventArgs e)
+        protected void ValidarCheck(object sender, EventArgs e)
         {
-            CargarDatos(txtBuscar.Text);
-        }
-
-        protected void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            CargarDatos(txtBuscar.Text);
-
-        }
-        protected void CargarDatos(String Filtro)
-        {
-            String NumeroFact = "", Empresa = "", Tipo = "";
-            DataTable dt = new DataTable();
-            if (!chkManual.Checked)
+            CheckBox chk = (CheckBox)sender;
+            switch (chk.ToolTip)
             {
+                case "cxc":
+                    txtEscanearCxC.Focus();
+                    break;
+                case "fact":
+                    txtEscanear.Focus();
+                    break;
+            }
+        }
+
+        protected void FacturasPendiente_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            FacturasPendiente.PageIndex = e.NewPageIndex;
+            CargarDatos();
+        }
+        protected void CargarDatos()
+        {
+            DataTable dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
+                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                                   "WHERE DAYS_BETWEEN(\"Fecha\", CURRENT_DATE) <= 7");
+
+            if (dt.Rows.Count > 0)
+            {
+                FacturasPendiente.DataSource = dt;
+                FacturasPendiente.DataBind();
+            }
+
+
+        }
+        protected void CargarFacturacion()
+        {
+            DataTable dt = ConexionSQL.consultaDataTable("Select * from [GestionCobroBD].[dbo].ControlFacturas where CuentasPorCobrar is null", "ControlFacturas");
+
+            if (dt.Rows.Count > 0)
+            {
+                grvFacturacion.DataSource = dt;
+                grvFacturacion.DataBind();
+            }
+
+
+        }
+
+        protected void txtEscanear_TextChanged(object sender, EventArgs e)
+        {
+            CargarFactura(txtEscanear.Text);
+        }
+        protected void CargarFactura(String Filtro)
+        {
+            try
+            {
+                String NumeroFact = "", Empresa = "", Tipo = "";
+                DataTable dt = new DataTable();
                 if (Filtro.Length > 0)
                 {
                     NumeroFact = Filtro.Substring(4, Filtro.Length - 4);
@@ -84,185 +114,96 @@ namespace GestionCobro
                             Tipo = "NC";
                             break;
                     }
-                }
-                if (Empresa.Length != 0)
-                {
-                    var count = lista.Where(x => x != null && x.BD == Empresa && x.NoFact == NumeroFact).Count();
-                    if (count == 0)
+
+
+                    String depto = Session["dpto"].ToString();
+                    if (depto == "VENTAS" || depto == "TI")
                     {
-                        dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\",(\"BD\"||\"NoFact\")\"Filtro\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{2}' and \"BD\"='{0}' and \"NoFact\"='{1}' ", Empresa, NumeroFact, txtFecha.Text));
-                        if (dt.Rows.Count > 0)
+                        if (!chkNoDelDiaFact.Checked)
                         {
-                            FacturasProcesadas fp = new FacturasProcesadas();
-                            fp.BD = Empresa;
-                            fp.Monto = Convert.ToDouble(dt.Rows[0]["DocTotal"].ToString());
-                            fp.NoFact = NumeroFact;
-                            fp.Socio = dt.Rows[0]["CardName"].ToString();
-                            lista.Add(fp);
+                            dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
+                                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                                                   $"WHERE DAYS_BETWEEN(\"Fecha\", CURRENT_DATE) <= 7 and \"BD\"='{Empresa}' and \"NoFact\"='{NumeroFact}';");
                         }
-                        Filtro = "";
-                            dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\",(\"BD\"||\"NoFact\")\"Filtro\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{1}' and \"BD\"||TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')||\"CardCode\"||\"CardName\"||\"DocTotal\"||\"NoFact\" like '%{0}%'", Filtro, txtFecha.Text));
-                }
                         else
                         {
-                        Filtro = "";
-                            dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\",(\"BD\"||\"NoFact\")\"Filtro\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{1}' and \"BD\"||TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')||\"CardCode\"||\"CardName\"||\"DocTotal\"||\"NoFact\" like '%{0}%'", Filtro, txtFecha.Text));
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Documento procesado anteriormente')", true);
+                            dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
+                                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                                                   $"WHERE \"BD\"='{Empresa}' and \"NoFact\"='{NumeroFact}';");
                         }
-                GuardarListaAsync();
-                CargarProcesadas();
-                txtBuscar.Text = "";
-                }
-                else
-                {
-                    dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\",(\"BD\"||\"NoFact\")\"Filtro\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{1}' and \"BD\"||TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')||\"CardCode\"||\"CardName\"||\"DocTotal\"||\"NoFact\" like '%{0}%'", Filtro, txtFecha.Text));
-                }
-            }
-            else
-            {
-                if (Filtro.Length > 0)
-                {
-                    dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\",(\"BD\"||\"NoFact\")\"Filtro\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{1}' and \"BD\"||TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')||\"CardCode\"||\"CardName\"||\"DocTotal\"||\"NoFact\" like '%{0}%'", Filtro, txtFecha.Text));
-                }
-                else
-                {
-                    dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\",(\"BD\"||\"NoFact\")\"Filtro\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{0}'", txtFecha.Text));
-                }
-            }
-            
-            DataView view = new DataView(dt);
-            StringBuilder sb = new StringBuilder();
-            bool first = true;
-            if (lista != null)
-            {
-                foreach (FacturasProcesadas fp in lista)
-                {
-                    if (first)
-                    {
-                        first = false;
+                        if (dt.Rows.Count == 1)
+                        {
+                            DataRow row = dt.Rows[0];
+                            string empresa = row["BD"].ToString();
+                            string tipo = "Tipo";  // Define el valor del tipo adecuado
+                            int noDocumento = Convert.ToInt32(row["NoFact"]);
+                            DateTime fecha = DateTime.ParseExact(row["Fecha"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            string cardCode = row["CardCode"].ToString();
+                            string cardName = row["CardName"].ToString();
+                            decimal total = Convert.ToDecimal(row["DocTotal"]);
+                            DateTime despacho = fecha; // Define el valor de despacho adecuado
+                            DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
+
+                            string insertQuery = $@"
+                                                INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho]
+                                                   ,[Facturacion])
+                                                VALUES('{empresa}','{tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd HH:mm:ss}','{facturacion:yyyy-MM-dd HH:mm:ss}');";
+                            int i = ConexionSQL.DML(insertQuery);
+                            if (i > 0)
+                            {
+                                CargarFacturacion();
+                                MostrarNotificacionToast($"Documento cargado correctamente", "success");
+                                this.txtEscanear.Text = "";
+                                this.txtEscanear.Focus();
+                            }
+                            else
+                            {
+
+                                MostrarNotificacionToast($"Ha ocurrido un error al cargar el documento", "error");
+                                this.txtEscanear.Text = "";
+                                this.txtEscanear.Focus();
+                            }
+                        }
+                        else
+                        {
+
+                            MostrarNotificacionToast($"No se encuentra ninguna coincidencia", "error");
+                            this.txtEscanear.Text = "";
+                            this.txtEscanear.Focus();
+                        }
                     }
-                    else
-                    {
-                        sb.Append(" AND ");
-                    }
 
-                    sb.AppendFormat("Filtro<>'{0}{1}'", fp.BD, fp.NoFact);
                 }
             }
-            view.RowFilter = sb.ToString();
-            FacturasPendiente.DataSource = view;
-            FacturasPendiente.DataBind();
-            txtBuscar.Focus();
-        }
+            catch (Exception ex) {
 
-        protected  void GuardarListaAsync() {
-            var jsonString = JsonConvert.SerializeObject(lista, Formatting.Indented);
-            File.WriteAllText(Server.MapPath("Archivos/FacturasProcesadas.json"), jsonString);
-
-
-        }
-        private static List<FacturasProcesadas> lista;
-        protected void GetList() {
-            StreamReader r = new StreamReader(Server.MapPath("Archivos/FacturasProcesadas.json"));
-            string json = r.ReadToEnd();
-            r.Close();
-            List<FacturasProcesadas> items = JsonConvert.DeserializeObject<List<FacturasProcesadas>>(json);
-            lista=items;
-            if (lista == null) {
-                lista = new List<FacturasProcesadas>();
+                MostrarNotificacionToast(ex.Message, "error");
+                this.txtEscanear.Text = "";
+                this.txtEscanear.Focus();
             }
-
         }
-        protected void CargarProcesadas()
+
+        private void MostrarNotificacionToast(string mensaje, string tipo)
         {
-            try
-            {
-                grvProcesadas.DataSource = lista;
-                grvProcesadas.DataBind();
-            }
-            catch (Exception ex) { }
+            string script = $@"
+    Toastify({{ 
+        text: '{mensaje}',
+        duration: 3000,
+        position: 'toast.POSITION.TOP_CENTER', // Cambia la posición a 'top'
+        gravity: 'top', // Cambia la gravedad a 'center'
+        backgroundColor: {(tipo == "success" ? "'#4caf50'" : "'#f44336'")}
+    }}).showToast();";
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarNotificacion", script, true);
+
+
+            // Registra el script en el cliente
         }
 
-        protected void FacturasPendiente_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void grvFacturacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             FacturasPendiente.PageIndex = e.NewPageIndex;
-            CargarDatos(txtBuscar.Text);
-
-        }
-
-        protected void grvProcesadas_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            grvProcesadas.PageIndex = e.NewPageIndex;
-            CargarProcesadas();
-        }
-
-        protected void txtBuscarProcesadas_TextChanged(object sender, EventArgs e)
-        {
-            CargarProcesadas();
-        }
-
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            DataTable dt = HANAConnection.DQL(String.Format("select \"BD\",\"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy')\"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\" from \"SB1LD_EPG_PRO\".\"VW_Facturas\" where \"Fecha\" > '{0}'", txtFecha.Text));
-            ExportToExcel(dt, String.Format("Pendientes al {0}", txtFecha.Text));
-        }
-        private void ExportToExcel(System.Data.DataTable dt, String nombre)
-        {
-            Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", String.Format("attachment;filename={0}.xls", nombre));
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
-            using (StringWriter sw = new StringWriter())
-            {
-                HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-                //To Export all pages
-                GridView gridView = new GridView();
-                gridView.AllowPaging = false;
-                gridView.DataSource = dt;
-                gridView.DataBind();
-
-                gridView.HeaderRow.BackColor = Color.White;
-                foreach (TableCell cell in gridView.HeaderRow.Cells)
-                {
-                    cell.BackColor = gridView.HeaderStyle.BackColor;
-                }
-                foreach (GridViewRow row in gridView.Rows)
-                {
-                    row.BackColor = Color.White;
-                    foreach (TableCell cell in row.Cells)
-                    {
-                        if (row.RowIndex % 2 == 0)
-                        {
-                            cell.BackColor = Color.DarkGray;
-                            cell.ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            cell.BackColor = Color.White;
-                            cell.ForeColor = Color.Black;
-                        }
-                        cell.CssClass = "textmode";
-                    }
-                }
-
-                gridView.RenderControl(hw);
-
-                //style to format numbers to string
-                string style = @"<style> .textmode { } </style>";
-                Response.Write(style);
-                Response.Output.Write(sw.ToString());
-                Response.Flush();
-                Response.End();
-            }
-        }
-        protected void txtFecha_TextChanged(object sender, EventArgs e)
-        {
-            Configuracion conf = new Configuracion();
-            conf.Fecha = txtFecha.Text;
-            var jsonString = JsonConvert.SerializeObject(conf, Formatting.Indented);
-            File.WriteAllText(Server.MapPath("Archivos/configuracion.json"), jsonString);
+            CargarFacturacion();
         }
     }
 }

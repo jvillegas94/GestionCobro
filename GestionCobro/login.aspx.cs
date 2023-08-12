@@ -31,11 +31,15 @@ namespace GestionCobro
                     if (txtUsuario.Text.Equals("manager"))
                     {
                         Session["user"] = "Depto TI | Empagro";
+                        string dpto = (string)HANAConnection.Excalar(string.Format("Select ifnull(T2.{0}Name{0},'') from {0}SB1LD_EPG_PRO{0}.{0}OUSR{0}  T0  INNER JOIN {0}SB1LD_EPG_PRO{0}.{0}OHEM{0} T1 ON T0.{0}USERID{0} = T1.{0}userId{0} inner join {0}SB1LD_EPG_PRO{0}.{0}OUDP{0} T2 on  T1.{0}dept{0}=T2.{0}Code{0}  where USER_CODE='{1}'", (char)34, txtUsuario.Text, txtClave.Text));
+                        Session["dpto"] = dpto;
                     }
                     else
                     {
-                        string ousr = (string)HANAConnection.Excalar(string.Format("Select {0}firstName{0}||' '||ifnull({0}middleName{0},'')|| ' '||{0}lastName{0} from {0}SB1LD_EPG_PRO{0}.{0}OUSR{0}  T0  INNER JOIN {0}SB1LD_EPG_PRO{0}.OHEM T1 ON T0.{0}USERID{0} = T1.{0}userId{0} where USER_CODE='{1}'", (char)34, txtUsuario.Text, txtClave.Text));
+                        string ousr = (string)HANAConnection.Excalar(string.Format("Select {0}firstName{0}||' '||ifnull({0}middleName{0},'')|| ' '||{0}lastName{0} from {0}SB1LD_EPG_PRO{0}.{0}OUSR{0}  T0  INNER JOIN {0}SB1LD_EPG_PRO{0}.{0}OHEM{0} T1 ON T0.{0}USERID{0} = T1.{0}userId{0} where USER_CODE='{1}'", (char)34, txtUsuario.Text, txtClave.Text));
+                        string dpto = (string)HANAConnection.Excalar(string.Format("Select ifnull(T2.{0}Name{0},'') from {0}SB1LD_EPG_PRO{0}.{0}OUSR{0}  T0  INNER JOIN {0}SB1LD_EPG_PRO{0}.{0}OHEM{0} T1 ON T0.{0}USERID{0} = T1.{0}userId{0} inner join {0}SB1LD_EPG_PRO{0}.{0}OUDP{0} T2 on  T1.{0}dept{0}=T2.{0}Code{0}  where USER_CODE='{1}'", (char)34, txtUsuario.Text, txtClave.Text));
                         Session["user"] = ousr;
+                    Session["dpto"] = dpto;
                     }
                     string osql = String.Format("Insert into Bitacora(Usuario,Accion) values('{0}','{1}')",Session["user"].ToString(),"Inicio de Sesión");
                     ConexionSQL.DML(osql);
