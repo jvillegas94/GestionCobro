@@ -107,7 +107,8 @@
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
           -->
-          Elaborado por <a href="#">Ing. Luis Miguel Bolaños Mejias</a>
+           © <%=DateTime.Now.Year %> Copyright:
+    Elaborado por <a href="#" style="color:black">Ing. Luis Miguel Bolaños Mejias</a>
         </div>
       </div>
     </section>
@@ -201,6 +202,11 @@
         });
       });
     </script>
+        <script>
+            function imprimirEnConsola(mensaje) {
+                console.log(mensaje);
+            }
+        </script>
 </form>
 </body>
 

@@ -1339,10 +1339,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>01/09/2018 15:56:26</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/13/2023 12:50:51</publishTime>
+      <publishTime>08/13/2023 14:22:33</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/13/2023 12:50:50</publishTime>
+      <publishTime>08/13/2023 14:22:32</publishTime>
     </File>
     <File Include="bin/Archivos/FacturasProcesadas.json">
       <publishTime>09/10/2022 14:08:38</publishTime>
@@ -1402,10 +1402,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2017 07:08:20</publishTime>
     </File>
     <File Include="bin/GestionCobro.dll">
-      <publishTime>08/13/2023 12:49:37</publishTime>
+      <publishTime>08/13/2023 14:21:40</publishTime>
     </File>
     <File Include="bin/GestionCobro.pdb">
-      <publishTime>08/13/2023 12:49:37</publishTime>
+      <publishTime>08/13/2023 14:21:40</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>10/22/2021 23:42:08</publishTime>
@@ -1609,7 +1609,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>04/16/2018 07:16:24</publishTime>
     </File>
     <File Include="ControlFacturas.aspx">
-      <publishTime>08/13/2023 12:07:46</publishTime>
+      <publishTime>08/13/2023 13:16:56</publishTime>
     </File>
     <File Include="css/bootstrap-colorpicker.css">
       <publishTime>04/16/2018 07:16:24</publishTime>
@@ -2062,10 +2062,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>04/24/2018 17:17:44</publishTime>
     </File>
     <File Include="master.Master">
-      <publishTime>08/12/2023 09:21:26</publishTime>
+      <publishTime>08/13/2023 13:36:12</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/13/2023 12:50:09</publishTime>
+      <publishTime>08/13/2023 14:21:56</publishTime>
     </File>
     <File Include="Resumen.aspx">
       <publishTime>07/10/2018 13:38:18</publishTime>

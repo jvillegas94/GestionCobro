@@ -86,7 +86,7 @@
                 <Columns>
         <asp:BoundField DataField="BD" HeaderText="Empresa" />
         <asp:BoundField DataField="NoFact" HeaderText="N° Fact" />
-        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
         <asp:BoundField DataField="CardCode" HeaderText="Código" />
         <asp:BoundField DataField="CardName" HeaderText="Nombre" />
         <asp:BoundField DataField="DocTotal" HeaderText="Total" DataFormatString="{0:C2}" />
@@ -114,7 +114,7 @@
     <Columns>
         <asp:BoundField DataField="Empresa" HeaderText="Empresa" />
         <asp:BoundField DataField="NoDocumento" HeaderText="N° Fact" />
-        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
         <asp:BoundField DataField="CardCode" HeaderText="Código" />
         <asp:BoundField DataField="CardName" HeaderText="Nombre" />
         <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
@@ -152,7 +152,7 @@
     <Columns>
         <asp:BoundField DataField="Empresa" HeaderText="Empresa" />
         <asp:BoundField DataField="NoDocumento" HeaderText="N° Fact" />
-        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+        <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
         <asp:BoundField DataField="CardCode" HeaderText="Código" />
         <asp:BoundField DataField="CardName" HeaderText="Nombre" />
         <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
@@ -172,6 +172,7 @@
 </asp:Panel>
   </div>
 </div>
+   
 </asp:Content>
 <asp:Content ID="Content11" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>

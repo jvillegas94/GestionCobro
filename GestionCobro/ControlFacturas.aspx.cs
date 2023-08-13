@@ -294,18 +294,18 @@ namespace GestionCobro
                                 DateTime despacho = fecha; // Define el valor de despacho adecuado
                                 DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
 
-                                string insertQuery = $@"set dateformat ymd;INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],UsuarioFacturacion) VALUES('{empresa}','{Tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
+                                string insertQuery = $@"set dateformat ymd;INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],UsuarioFacturacion) VALUES('{empresa}','{Tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}','{total.ToString().Replace(",",".")}','{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
                                 string script = $"{insertQuery.Replace("'", "\\'")}";
 
                                 string checkIfExistsQuery = $@"SELECT isnull(UsuarioFacturacion,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{Tipo}' AND [NoDocumento] = {noDocumento}";
                                 //MostrarNotificacionToast(insertQuery,"success");
-                                master masterPage = this.Master as master;
+                               /* master masterPage = this.Master as master;
 
                                 if (masterPage != null)
                                 {
                                     // Llamar al método MostrarMensaje en la página maestra
                                     masterPage.Mensaje(script);
-                                }
+                                }*/
                                 String flag = (ConexionSQL.ConsultaUnica(checkIfExistsQuery));
                                 if (flag.Length > 0)
                                 {
