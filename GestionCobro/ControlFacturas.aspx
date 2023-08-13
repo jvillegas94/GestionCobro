@@ -77,7 +77,7 @@
    <div class="row">
   <div class="col-sm-4 col-lg-4">
       <div class="card">
-  <div class="card-header  bg-primary text-white">Despacho
+  <div class="card-header  bg-primary text-white">Despacho <asp:ImageButton CssClass="form-control" runat="server" ID="ibtnAsignados" CommandName="Despacho" ImageUrl="~/img/XLS.png" Width="35px" OnClick="ibtnAsignados_Click"/>
   </div>
   <div class="card-body">
       <asp:Panel runat="server" ScrollBars="Horizontal" Width="100%">
@@ -99,11 +99,11 @@
   <div class="col-sm-4 col-lg-4">
       <asp:Panel ID="pnlFacturacion" runat="server" ScrollBars="Horizontal" Width="100%">
       <div class="card">
-  <div class="card-header bg-secondary text-white">Facturación<br/>
+  <div class="card-header bg-secondary text-white">Facturación
       <div class="form-inline">
           <div class="form-group">
     <asp:CheckBox AutoPostBack="true" OnCheckedChanged="ValidarCheck" ToolTip="fact" CssClass="form-check-input" ID="chkNoDelDiaFact" runat="server" />
-    <asp:TextBox CssClass="form-control" ID="txtEscanear" runat="server" OnTextChanged="txtEscanear_TextChanged" AutoPostBack="true"></asp:TextBox>
+    <asp:TextBox CssClass="form-control" ID="txtEscanear" runat="server" OnTextChanged="txtEscanear_TextChanged" AutoPostBack="true"></asp:TextBox><asp:ImageButton CssClass="form-control" runat="server" ID="ImageButton1" CommandName="Facturacion" ImageUrl="~/img/XLS.png" Width="35px" OnClick="ibtnAsignados_Click"/>
 </div>
 
           </div>
@@ -135,18 +135,19 @@
 
        <asp:Panel ID="pnlCuentasporCobrar" runat="server" ScrollBars="Horizontal" Width="100%">
       <div class="card">
-  <div class="card-header  bg-success text-white">Cuentas por Cobrar<br/>
+  <div class="card-header  bg-success text-white">Cuentas por Cobrar&nbsp;
       <div class="form-inline">
           <div class="form-group">
     <div class="form-check">
         <asp:CheckBox AutoPostBack="true" OnCheckedChanged="ValidarCheck" ToolTip="cxc" CssClass="form-check-input" ID="chkNoDelDiaCxC" runat="server" />
     </div>
     <asp:TextBox CssClass="form-control" ID="txtEscanearCxC" runat="server" AutoPostBack="true" OnTextChanged="txtEscanearCxC_TextChanged"></asp:TextBox>
+              <asp:ImageButton CssClass="form-control" runat="server" ID="ImageButton2" CommandName="CxC" ImageUrl="~/img/XLS.png" Width="35px" OnClick="ibtnAsignados_Click"/>
 </div>
 
           </div></div>
   <div class="card-body">
-     <asp:GridView style="font-size:10px" ID="grvCuentasPorCobrar" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="grvFacturacion_PageIndexChanging" CssClass="table table-striped table-advance table-hover" ForeColor="#333333" GridLines="None" Font-Size="Smaller" Width="100%">
+     <asp:GridView style="font-size:10px" ID="grvCuentasPorCobrar" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="grvCuentasPorCobrar_PageIndexChanging" CssClass="table table-striped table-advance table-hover" ForeColor="#333333" GridLines="None" Font-Size="Smaller" Width="100%">
     <PagerStyle CssClass="pagination-ys" />
     <Columns>
         <asp:BoundField DataField="Empresa" HeaderText="Empresa" />

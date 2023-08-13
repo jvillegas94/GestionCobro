@@ -34,6 +34,11 @@ namespace GestionCobro
                         this.pnlFacturacion.Enabled = true;
                         this.pnlCuentasporCobrar.Enabled = false;
                     }
+                    else if (Session["dpto"].ToString().Equals("TI")) {
+                   
+                        this.pnlFacturacion.Enabled = true;
+                        this.pnlCuentasporCobrar.Enabled = true;
+                    }
                     else
                     {
 
@@ -44,7 +49,75 @@ namespace GestionCobro
                 }
             }
         }
+        private void ExportToExcel(System.Data.DataTable dt, String nombre)
+        {
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    Response.Clear();
+                    Response.Buffer = true;
+                    Response.AddHeader("content-disposition", ($"attachment;filename={nombre}_{DateTime.Now.ToString("yyyyMMdd hh:mm:ss")}.xls"));
+                    Response.Charset = "";
+                    Response.ContentType = "application/vnd.ms-excel";
+                    using (StringWriter sw = new StringWriter())
+                    {
+                        HtmlTextWriter hw = new HtmlTextWriter(sw);
 
+                        //To Export all pages
+                        GridView gridView = new GridView();
+                        gridView.AllowPaging = false;
+                        gridView.DataSource = dt;
+                        gridView.DataBind();
+
+                        gridView.HeaderRow.BackColor = Color.White;
+                        foreach (TableCell cell in gridView.HeaderRow.Cells)
+                        {
+                            cell.BackColor = gridView.HeaderStyle.BackColor;
+                        }
+                        foreach (GridViewRow row in gridView.Rows)
+                        {
+                            row.BackColor = Color.White;
+                            foreach (TableCell cell in row.Cells)
+                            {
+                                if (row.RowIndex % 2 == 0)
+                                {
+                                    cell.BackColor = Color.ForestGreen;
+                                }
+                                else
+                                {
+                                    cell.BackColor = Color.FloralWhite;
+                                }
+                                cell.CssClass = "textmode";
+                            }
+                        }
+
+                        gridView.RenderControl(hw);
+
+                        //style to format numbers to string
+                        string style = @"<style> .textmode { } </style>";
+                        Response.Write(style);
+                        Response.Output.Write(sw.ToString());
+                        Response.Flush();
+                        Response.End();
+                    }
+                }
+                else
+                {
+
+                    MostrarNotificacionToast($"No hay registros que exportar", "error");
+                    this.txtEscanear.Text = "";
+                    this.txtEscanear.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MostrarNotificacionToast($"{ex.Message}", "error");
+                this.txtEscanear.Text = "";
+                this.txtEscanear.Focus();
+            }
+        }
         protected void ValidarCheck(object sender, EventArgs e)
         {
             CheckBox chk = (CheckBox)sender;
@@ -211,7 +284,6 @@ namespace GestionCobro
                             else
                             {
                                 string empresa = row["BD"].ToString();
-                                string tipo = "Tipo";  // Define el valor del tipo adecuado
                                 int noDocumento = Convert.ToInt32(row["NoFact"]);
                                 DateTime fecha = DateTime.ParseExact(row["Fecha"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                                 string cardCode = row["CardCode"].ToString();
@@ -220,8 +292,8 @@ namespace GestionCobro
                                 DateTime despacho = fecha; // Define el valor de despacho adecuado
                                 DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
 
-                                string insertQuery = $@"set dateformat ymd;INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],Usuario) VALUES('{empresa}','{tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
-                                string checkIfExistsQuery = $@"SELECT isnull(Usuario,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{tipo}' AND [NoDocumento] = {noDocumento}";
+                                string insertQuery = $@"set dateformat ymd;INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],UsuarioFacturacion) VALUES('{empresa}','{Tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
+                                string checkIfExistsQuery = $@"SELECT isnull(UsuarioFacturacion,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{Tipo}' AND [NoDocumento] = {noDocumento}";
                                 String flag = (ConexionSQL.ConsultaUnica(checkIfExistsQuery));
                                 if (flag.Length > 0)
                                 {
@@ -306,7 +378,7 @@ namespace GestionCobro
                     dt = ConexionSQL.consultaDataTable(osql, "ControlDespacho");
                     if (dt.Rows.Count> 0)
                     {
-                        osql = $@"Update a set CuentasPorCobrar=getdate() from [GestionCobroBD].[dbo].[ControlFacturas] a where Empresa='{Empresa}' and NoDocumento={NumeroFact}; ";
+                        osql = $@"Update a set CuentasPorCobrar=getdate(),UsuarioCuentasporCobrar='{Session["user"].ToString()}' from [GestionCobroBD].[dbo].[ControlFacturas] a where Empresa='{Empresa}' and NoDocumento={NumeroFact}; ";
                         int i = ConexionSQL.DML(osql);
                         if (i > 0)
                         {
@@ -401,6 +473,40 @@ namespace GestionCobro
             }
             CargarFacturacion();
 
+        }
+
+        protected void grvCuentasPorCobrar_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvCuentasPorCobrar.PageIndex = e.NewPageIndex;
+            CargarFacturacion();
+
+        }
+
+        protected void ibtnAsignados_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton imgbtn = (ImageButton)sender;
+            DataTable despacho = new DataTable();
+            DataTable facturacion = new DataTable();
+            DataTable CuentasporCobrar = new DataTable();
+            switch (imgbtn.CommandName)
+            {
+                case "Despacho":
+            despacho = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
+                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                                   "WHERE DAYS_BETWEEN(\"Fecha\", CURRENT_DATE) <= 7");
+            ExportToExcel(despacho,"Despacho");
+                    break;
+                case "Facturacion":
+                    String osql = $"Select * from [GestionCobroBD].[dbo].[ControlFacturas] where CuentasPorCobrar is null";
+                    facturacion = ConexionSQL.consultaDataTable(osql, "Facturacion");
+                    ExportToExcel(facturacion, "Facturacion");
+                    break;
+                case "CxC":
+            String osql1 = $"Select * from [GestionCobroBD].[dbo].[ControlFacturas] where CuentasPorCobrar is not null";
+            CuentasporCobrar = ConexionSQL.consultaDataTable(osql1, "CuentasPorCobrar");
+                    ExportToExcel(CuentasporCobrar, "CxC");
+                    break;
+            }
         }
     }
 }

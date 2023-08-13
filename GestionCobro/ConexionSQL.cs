@@ -114,13 +114,20 @@ namespace GestionCobro
             return dt.Rows.Count;
         }
 
-        public static string ConsultaUnica(SqlCommand comando)
+        public static string ConsultaUnica(String oSQL)
         {
+            SqlCommand comando = new SqlCommand(oSQL);
             SqlConnection con = ConexionBD();
             comando.Connection = con;
-            String resultado = comando.ExecuteScalar().ToString();
+            Object result = comando.ExecuteScalar();
             con.Close();
-            return resultado;
+            if (result == null)
+            {
+                return "";
+            }
+            else { 
+            return  result.ToString();
+            }
 
         }
         //-----------------------------------------------------------------------------------------------------------------------
