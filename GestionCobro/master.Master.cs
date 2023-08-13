@@ -33,5 +33,11 @@ namespace GestionCobro
                 Response.Redirect("login.aspx");
             }
         }
+        public  void Mensaje(String mensaje)
+        {
+                string mensajePersonalizado = "Este es un mensaje personalizado desde el code-behind";
+                string script = $"imprimirEnConsola('{mensaje}');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "ImprimirConsola", script, true);
+        }
     }
 }

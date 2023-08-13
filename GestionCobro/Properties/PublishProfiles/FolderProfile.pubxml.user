@@ -1336,13 +1336,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>04/16/2018 07:16:24</publishTime>
     </File>
     <File Include="bin/AjaxControlToolkit.dll">
-      <publishTime>09/01/2018 15:56:26</publishTime>
+      <publishTime>01/09/2018 15:56:26</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/11/2022 22:46:35</publishTime>
+      <publishTime>08/13/2023 12:50:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/11/2022 22:46:34</publishTime>
+      <publishTime>08/13/2023 12:50:50</publishTime>
     </File>
     <File Include="bin/Archivos/FacturasProcesadas.json">
       <publishTime>09/10/2022 14:08:38</publishTime>
@@ -1402,10 +1402,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2017 07:08:20</publishTime>
     </File>
     <File Include="bin/GestionCobro.dll">
-      <publishTime>09/11/2022 22:45:25</publishTime>
+      <publishTime>08/13/2023 12:49:37</publishTime>
     </File>
     <File Include="bin/GestionCobro.pdb">
-      <publishTime>09/11/2022 22:45:25</publishTime>
+      <publishTime>08/13/2023 12:49:37</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>10/22/2021 23:42:08</publishTime>
@@ -1609,7 +1609,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>04/16/2018 07:16:24</publishTime>
     </File>
     <File Include="ControlFacturas.aspx">
-      <publishTime>09/10/2022 14:48:35</publishTime>
+      <publishTime>08/13/2023 12:07:46</publishTime>
     </File>
     <File Include="css/bootstrap-colorpicker.css">
       <publishTime>04/16/2018 07:16:24</publishTime>
@@ -1666,7 +1666,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/11/2022 14:43:01</publishTime>
     </File>
     <File Include="Detalle.aspx">
-      <publishTime>02/05/2018 09:46:59</publishTime>
+      <publishTime>05/02/2018 09:46:59</publishTime>
     </File>
     <File Include="Devoluciones.aspx">
       <publishTime>09/11/2022 20:55:36</publishTime>
@@ -1771,31 +1771,31 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>04/16/2018 16:59:36</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-hdpi/icon.png">
-      <publishTime>09/04/2018 13:25:48</publishTime>
+      <publishTime>04/09/2018 13:25:48</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-hdpi/ic_launcher.png">
       <publishTime>04/16/2018 16:59:36</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-mdpi/icon.png">
-      <publishTime>09/04/2018 13:25:48</publishTime>
+      <publishTime>04/09/2018 13:25:48</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-mdpi/ic_launcher.png">
       <publishTime>04/16/2018 16:59:36</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-xhdpi/icon.png">
-      <publishTime>09/04/2018 13:25:48</publishTime>
+      <publishTime>04/09/2018 13:25:48</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-xhdpi/ic_launcher.png">
       <publishTime>04/16/2018 16:59:36</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-xxhdpi/icon.png">
-      <publishTime>09/04/2018 13:25:48</publishTime>
+      <publishTime>04/09/2018 13:25:48</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-xxhdpi/ic_launcher.png">
       <publishTime>04/16/2018 16:59:36</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-xxxhdpi/icon.png">
-      <publishTime>09/04/2018 13:25:48</publishTime>
+      <publishTime>04/09/2018 13:25:48</publishTime>
     </File>
     <File Include="img/icon/res/mipmap-xxxhdpi/ic_launcher.png">
       <publishTime>04/16/2018 16:59:36</publishTime>
@@ -2049,6 +2049,9 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="js/sparklines.js">
       <publishTime>04/16/2018 07:16:25</publishTime>
     </File>
+    <File Include="js/Toastify.js">
+      <publishTime>08/12/2023 09:09:15</publishTime>
+    </File>
     <File Include="js/xcharts.min.js">
       <publishTime>04/16/2018 07:16:25</publishTime>
     </File>
@@ -2059,16 +2062,16 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>04/24/2018 17:17:44</publishTime>
     </File>
     <File Include="master.Master">
-      <publishTime>04/16/2018 17:01:44</publishTime>
+      <publishTime>08/12/2023 09:21:26</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/11/2022 22:46:06</publishTime>
+      <publishTime>08/13/2023 12:50:09</publishTime>
     </File>
     <File Include="Resumen.aspx">
       <publishTime>07/10/2018 13:38:18</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/10/2022 15:08:04</publishTime>
+      <publishTime>08/13/2023 12:49:49</publishTime>
     </File>
   </ItemGroup>
 </Project>
