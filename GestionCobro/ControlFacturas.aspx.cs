@@ -121,47 +121,72 @@ namespace GestionCobro
                     {
                         if (!chkNoDelDiaFact.Checked)
                         {
-                            dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
-                                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                            dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", \"Condiciones\",\"Estado\", (\"BD\" || \"NoFact\") AS \"Filtro\" " + "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
                                                    $"WHERE DAYS_BETWEEN(\"Fecha\", CURRENT_DATE) <= 7 and \"BD\"='{Empresa}' and \"NoFact\"='{NumeroFact}';");
                         }
                         else
                         {
-                            dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
-                                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                            dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", \"Condiciones\",\"Estado\", (\"BD\" || \"NoFact\") AS \"Filtro\" " + "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
                                                    $"WHERE \"BD\"='{Empresa}' and \"NoFact\"='{NumeroFact}';");
                         }
                         if (dt.Rows.Count == 1)
                         {
                             DataRow row = dt.Rows[0];
-                            string empresa = row["BD"].ToString();
-                            string tipo = "Tipo";  // Define el valor del tipo adecuado
-                            int noDocumento = Convert.ToInt32(row["NoFact"]);
-                            DateTime fecha = DateTime.ParseExact(row["Fecha"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                            string cardCode = row["CardCode"].ToString();
-                            string cardName = row["CardName"].ToString();
-                            decimal total = Convert.ToDecimal(row["DocTotal"]);
-                            DateTime despacho = fecha; // Define el valor de despacho adecuado
-                            DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
+                            if (row["Condiciones"].ToString().Equals("Contado")) {
 
-                            string insertQuery = $@"
-                                                INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho]
-                                                   ,[Facturacion])
-                                                VALUES('{empresa}','{tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd HH:mm:ss}','{facturacion:yyyy-MM-dd HH:mm:ss}');";
-                            int i = ConexionSQL.DML(insertQuery);
-                            if (i > 0)
-                            {
-                                CargarFacturacion();
-                                MostrarNotificacionToast($"Documento cargado correctamente", "success");
+                                MostrarNotificacionToast($"Este documento es de contado", "error");
+                                this.txtEscanear.Text = "";
+                                this.txtEscanear.Focus();
+                            }
+                            else if (!row["Estado"].Equals("Normal")) {
+                                MostrarNotificacionToast($"Este documento se encuentra {row["Estado"]}", "error");
                                 this.txtEscanear.Text = "";
                                 this.txtEscanear.Focus();
                             }
                             else
                             {
+                                string empresa = row["BD"].ToString();
+                                string tipo = "Tipo";  // Define el valor del tipo adecuado
+                                int noDocumento = Convert.ToInt32(row["NoFact"]);
+                                DateTime fecha = DateTime.ParseExact(row["Fecha"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                string cardCode = row["CardCode"].ToString();
+                                string cardName = row["CardName"].ToString();
+                                decimal total = Convert.ToDecimal(row["DocTotal"]);
+                                DateTime despacho = fecha; // Define el valor de despacho adecuado
+                                DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
 
-                                MostrarNotificacionToast($"Ha ocurrido un error al cargar el documento", "error");
-                                this.txtEscanear.Text = "";
-                                this.txtEscanear.Focus();
+                                string insertQuery = $@"
+                                                INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho]
+                                                   ,[Facturacion],Usuario)
+                                                VALUES('{empresa}','{tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd HH:mm:ss}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
+                                string checkIfExistsQuery = $@"SELECT isnull(Usuario,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{tipo}' AND [NoDocumento] = {noDocumento}";
+                                String flag = (ConexionSQL.ConsultaUnica(checkIfExistsQuery));
+                                if (flag.Length > 0)
+                                {
+
+                                    MostrarNotificacionToast($"Este documento ya fue escaneado por {flag}", "error");
+                                    this.txtEscanear.Text = "";
+                                    this.txtEscanear.Focus();
+                                }
+                                else
+                                {
+                                    int i = ConexionSQL.DML(insertQuery);
+                                    if (i > 0)
+                                    {
+                                        CargarFacturacion();
+                                        MostrarNotificacionToast($"Documento cargado correctamente", "success");
+                                        this.txtEscanear.Text = "";
+                                        this.txtEscanear.Focus();
+                                    }
+                                    else
+                                    {
+
+                                        MostrarNotificacionToast($"Ha ocurrido un error al cargar el documento", "error");
+                                        this.txtEscanear.Text = "";
+                                        this.txtEscanear.Focus();
+                                    }
+                                }
+
                             }
                         }
                         else
@@ -171,7 +196,7 @@ namespace GestionCobro
                             this.txtEscanear.Text = "";
                             this.txtEscanear.Focus();
                         }
-                    }
+                    } 
 
                 }
             }
