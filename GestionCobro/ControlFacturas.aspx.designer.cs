@@ -33,6 +33,24 @@ namespace GestionCobro
         protected global::System.Web.UI.WebControls.GridView FacturasPendiente;
 
         /// <summary>
+        /// Control lblFechaDespacho.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaDespacho;
+
+        /// <summary>
+        /// Control pnlFacturacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFacturacion;
+
+        /// <summary>
         /// Control chkNoDelDiaFact.
         /// </summary>
         /// <remarks>
@@ -60,6 +78,15 @@ namespace GestionCobro
         protected global::System.Web.UI.WebControls.GridView grvFacturacion;
 
         /// <summary>
+        /// Control lblTotalFacturacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalFacturacion;
+
+        /// <summary>
         /// Control CxC.
         /// </summary>
         /// <remarks>
@@ -67,6 +94,15 @@ namespace GestionCobro
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CxC;
+
+        /// <summary>
+        /// Control pnlCuentasporCobrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCuentasporCobrar;
 
         /// <summary>
         /// Control chkNoDelDiaCxC.
@@ -85,5 +121,23 @@ namespace GestionCobro
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEscanearCxC;
+
+        /// <summary>
+        /// Control grvCuentasPorCobrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grvCuentasPorCobrar;
+
+        /// <summary>
+        /// Control lblTotalCuentasporCobrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalCuentasporCobrar;
     }
 }

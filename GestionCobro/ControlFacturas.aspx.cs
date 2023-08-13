@@ -25,9 +25,22 @@ namespace GestionCobro
             {
                 if (Session["dpto"] != null)
                 {
-                    CargarDatos();
                     CargarFacturacion();
+                    CargarDatos();
                     this.Label1.Text = Session["dpto"].ToString();
+                    if (Session["dpto"].ToString().Equals("VENTAS"))
+                    {
+
+                        this.pnlFacturacion.Enabled = true;
+                        this.pnlCuentasporCobrar.Enabled = false;
+                    }
+                    else
+                    {
+
+                        this.pnlFacturacion.Enabled = false;
+                        this.pnlCuentasporCobrar.Enabled = true;
+
+                    }
                 }
             }
         }
@@ -56,23 +69,75 @@ namespace GestionCobro
             DataTable dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
                                    "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
                                    "WHERE DAYS_BETWEEN(\"Fecha\", CURRENT_DATE) <= 7");
+            DataTable dt1 = ConexionSQL.consultaDataTable("Select Empresa,NoDocumento from [GestionCobroBD].[dbo].ControlFacturas", "Facturas");
 
+            // Crear un HashSet para almacenar las combinaciones Empresa y NoDocumento de dt1
+            HashSet<Tuple<string, int>> dt1Set = new HashSet<Tuple<string, int>>();
+
+            // Llenar el HashSet con las combinaciones Empresa y NoDocumento de dt1
+            foreach (DataRow row in dt1.Rows)
+            {
+                string empresa = row["Empresa"].ToString();
+                int noDocumento = Convert.ToInt32(row["NoDocumento"]);
+                dt1Set.Add(new Tuple<string, int>(empresa, noDocumento));
+            }
+
+            // Iterar en reverso por el DataTable y eliminar las filas que coinciden
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+                string empresa = dt.Rows[i]["BD"].ToString();
+                int noDocumento = Convert.ToInt32(dt.Rows[i]["NoFact"]);
+
+                if (dt1Set.Contains(new Tuple<string, int>(empresa, noDocumento)))
+                {
+                    dt.Rows.RemoveAt(i);
+                }
+            }
             if (dt.Rows.Count > 0)
             {
                 FacturasPendiente.DataSource = dt;
                 FacturasPendiente.DataBind();
             }
+            else {
 
+                FacturasPendiente.DataSource = null;
+                FacturasPendiente.DataBind();
+            }
+            DateTime fechaDespacho = DateTime.Now.AddDays(-7);
+            string fechaDespachoFormateada = fechaDespacho.ToString("dd/MM/yyyy");
+            lblFechaDespacho.Text = fechaDespachoFormateada;
 
         }
         protected void CargarFacturacion()
         {
             DataTable dt = ConexionSQL.consultaDataTable("Select * from [GestionCobroBD].[dbo].ControlFacturas where CuentasPorCobrar is null", "ControlFacturas");
 
+            DataTable dt1 = ConexionSQL.consultaDataTable("Select * from [GestionCobroBD].[dbo].ControlFacturas where CuentasPorCobrar is not null", "ControlFacturas");
+
             if (dt.Rows.Count > 0)
             {
                 grvFacturacion.DataSource = dt;
                 grvFacturacion.DataBind();
+                this.lblTotalFacturacion.Text = $"{dt.Rows.Count}";
+            }
+            else
+            {
+                grvFacturacion.DataSource = null;
+                grvFacturacion.DataBind();
+                this.lblTotalFacturacion.Text = $"0";
+            }
+
+            if (dt1.Rows.Count > 0)
+            {
+                this.grvCuentasPorCobrar.DataSource = dt1;
+                grvCuentasPorCobrar.DataBind();
+                this.lblTotalCuentasporCobrar.Text = $"{dt1.Rows.Count}";
+            }
+            else
+            {
+                grvCuentasPorCobrar.DataSource = null;
+                grvCuentasPorCobrar.DataBind();
+                this.lblTotalCuentasporCobrar.Text = $"0";
             }
 
 
@@ -155,10 +220,7 @@ namespace GestionCobro
                                 DateTime despacho = fecha; // Define el valor de despacho adecuado
                                 DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
 
-                                string insertQuery = $@"
-                                                INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho]
-                                                   ,[Facturacion],Usuario)
-                                                VALUES('{empresa}','{tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd HH:mm:ss}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
+                                string insertQuery = $@"set dateformat ymd;INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],Usuario) VALUES('{empresa}','{tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}',{total},'{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
                                 string checkIfExistsQuery = $@"SELECT isnull(Usuario,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{tipo}' AND [NoDocumento] = {noDocumento}";
                                 String flag = (ConexionSQL.ConsultaUnica(checkIfExistsQuery));
                                 if (flag.Length > 0)
@@ -174,6 +236,7 @@ namespace GestionCobro
                                     if (i > 0)
                                     {
                                         CargarFacturacion();
+                                        CargarDatos();
                                         MostrarNotificacionToast($"Documento cargado correctamente", "success");
                                         this.txtEscanear.Text = "";
                                         this.txtEscanear.Focus();
@@ -207,8 +270,73 @@ namespace GestionCobro
                 this.txtEscanear.Focus();
             }
         }
+        protected void CargarCuentasPorCobrar(String Filtro)
+        {
+            try
+            {
+                String NumeroFact = "", Empresa = "", Tipo = "";
+                DataTable dt = new DataTable();
+                if (Filtro.Length > 0)
+                {
+                    NumeroFact = Filtro.Substring(4, Filtro.Length - 4);
+                    String Em = Filtro.Substring(0, 2);
+                    switch (Em)
+                    {
+                        case "00":
+                            Empresa = "Empagro";
+                            break;
+                        case "01":
+                            Empresa = "Rosa";
+                            break;
+                        case "02":
+                            Empresa = "Don Beto";
+                            break;
+                    }
+                    String TI = Filtro.Substring(2, 2);
+                    switch (TI)
+                    {
+                        case "00":
+                            Tipo = "FC";
+                            break;
+                        case "01":
+                            Tipo = "NC";
+                            break;
+                    }
+                    String osql = $"Select * from [GestionCobroBD].[dbo].[ControlFacturas] where Empresa='{Empresa}' and NoDocumento='{NumeroFact}' and CuentasPorCobrar is null";
+                    dt = ConexionSQL.consultaDataTable(osql, "ControlDespacho");
+                    if (dt.Rows.Count> 0)
+                    {
+                        osql = $@"Update a set CuentasPorCobrar=getdate() from [GestionCobroBD].[dbo].[ControlFacturas] a where Empresa='{Empresa}' and NoDocumento={NumeroFact}; ";
+                        int i = ConexionSQL.DML(osql);
+                        if (i > 0)
+                        {
+                            CargarFacturacion();
+                            MostrarNotificacionToast($"Documento cargado correctamente", "success");
+                            this.txtEscanearCxC.Text = "";
+                            this.txtEscanearCxC.Focus();
+                        }
+                        else {
+                            MostrarNotificacionToast($"Ha ocurrido un error al cargar el documento", "error");
+                            this.txtEscanear.Text = "";
+                            this.txtEscanear.Focus();
+                        }
 
-        private void MostrarNotificacionToast(string mensaje, string tipo)
+                    }
+                    else {
+                         MostrarNotificacionToast($"No se encuentra ninguna coincidencia", "error");
+                        this.txtEscanearCxC.Text = "";
+                        this.txtEscanearCxC.Focus();
+                    }
+                }
+            }
+            catch (Exception ex) {
+
+                MostrarNotificacionToast($"{ex.Message}", "error");
+                this.txtEscanearCxC.Text = "";
+                this.txtEscanearCxC.Focus();
+            }
+        }
+    private void MostrarNotificacionToast(string mensaje, string tipo)
         {
             string script = $@"
     Toastify({{ 
@@ -229,6 +357,50 @@ namespace GestionCobro
         {
             FacturasPendiente.PageIndex = e.NewPageIndex;
             CargarFacturacion();
+        }
+
+        protected void btnEliminar_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnEliminar = (ImageButton)sender;
+            GridViewRow row = (GridViewRow)btnEliminar.NamingContainer;
+
+            string empresa = row.Cells[0].Text; // Obtén la Empresa de la primera celda
+            int noDocumento = Convert.ToInt32(row.Cells[1].Text); // Obtén el NoDocumento de la segunda celda
+
+            String osql = $"Delete from [GestionCobroBD].[dbo].[ControlFacturas] where Empresa='{empresa}' and NoDocumento='{noDocumento}'";
+            int i =ConexionSQL.DML(osql);
+            if (i > 0) {
+                MostrarNotificacionToast($"Documento eliminado correctamente", "success");
+                this.txtEscanear.Text = "";
+                this.txtEscanear.Focus();
+            }
+                CargarFacturacion();
+                CargarDatos();
+        }
+
+        protected void txtEscanearCxC_TextChanged(object sender, EventArgs e)
+        {
+            CargarCuentasPorCobrar(txtEscanearCxC.Text);
+        }
+
+        protected void btnEliminarCxC_Click(object sender, ImageClickEventArgs e)
+        {
+            ImageButton btnEliminar = (ImageButton)sender;
+            GridViewRow row = (GridViewRow)btnEliminar.NamingContainer;
+
+            string empresa = row.Cells[0].Text; // Obtén la Empresa de la primera celda
+            int noDocumento = Convert.ToInt32(row.Cells[1].Text); // Obtén el NoDocumento de la segunda celda
+
+            String osql = $"Update a set CuentasPorCobrar=null from [GestionCobroBD].[dbo].[ControlFacturas] a where Empresa='{empresa}' and NoDocumento='{noDocumento}'";
+            int i = ConexionSQL.DML(osql);
+            if (i > 0)
+            {
+                MostrarNotificacionToast($"Documento eliminado correctamente", "success");
+                this.txtEscanearCxC.Text = "";
+                this.txtEscanearCxC.Focus();
+            }
+            CargarFacturacion();
+
         }
     }
 }

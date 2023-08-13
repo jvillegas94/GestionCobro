@@ -93,10 +93,11 @@
     </Columns>
             </asp:GridView></asp:Panel>
   </div>
-  <div class="card-footer">Total: </div>
+  <div class="card-footer">Facturas del <asp:Label ID="lblFechaDespacho" runat="server" Text=""></asp:Label> </div>
 </div>
   </div>
   <div class="col-sm-4 col-lg-4">
+      <asp:Panel ID="pnlFacturacion" runat="server" ScrollBars="Horizontal" Width="100%">
       <div class="card">
   <div class="card-header bg-secondary text-white">Facturación<br/>
       <div class="form-inline">
@@ -107,22 +108,32 @@
 
           </div>
       </div>
-  <div class="card-body"><asp:Panel runat="server" ScrollBars="Horizontal" Width="100%">
-      <asp:GridView style="font-size:10px" ID="grvFacturacion" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="grvFacturacion_PageIndexChanging" CssClass="table table-striped table-advance table-hover" ForeColor="#333333" GridLines="None" Font-Size="Smaller" Width="100%">
-                <PagerStyle CssClass="pagination-ys" />
-                <Columns>
+  <div class="card-body">
+     <asp:GridView style="font-size:10px" ID="grvFacturacion" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="grvFacturacion_PageIndexChanging" CssClass="table table-striped table-advance table-hover" ForeColor="#333333" GridLines="None" Font-Size="Smaller" Width="100%">
+    <PagerStyle CssClass="pagination-ys" />
+    <Columns>
         <asp:BoundField DataField="Empresa" HeaderText="Empresa" />
         <asp:BoundField DataField="NoDocumento" HeaderText="N° Fact" />
         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
         <asp:BoundField DataField="CardCode" HeaderText="Código" />
         <asp:BoundField DataField="CardName" HeaderText="Nombre" />
         <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
+        
+        <asp:TemplateField HeaderText="Acciones">
+            <ItemTemplate>
+                <asp:ImageButton ID="btnEliminar" runat="server" ImageUrl="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" Width="20px" AlternateText="Eliminar" OnClick="btnEliminar_Click"/>
+            </ItemTemplate>
+        </asp:TemplateField>
     </Columns>
-            </asp:GridView></asp:Panel></div>
-  <div class="card-footer">Total:</div>
+</asp:GridView>
 </div>
+  <div class="card-footer">Total: <asp:Label ID="lblTotalFacturacion" runat="server" Text=""></asp:Label></div>
+</div> 
+</asp:Panel>
       </div>
   <div runat="server" id="CxC" class="col-sm-4 col-lg-4">
+
+       <asp:Panel ID="pnlCuentasporCobrar" runat="server" ScrollBars="Horizontal" Width="100%">
       <div class="card">
   <div class="card-header  bg-success text-white">Cuentas por Cobrar<br/>
       <div class="form-inline">
@@ -130,13 +141,34 @@
     <div class="form-check">
         <asp:CheckBox AutoPostBack="true" OnCheckedChanged="ValidarCheck" ToolTip="cxc" CssClass="form-check-input" ID="chkNoDelDiaCxC" runat="server" />
     </div>
-    <asp:TextBox CssClass="form-control" ID="txtEscanearCxC" runat="server"></asp:TextBox>
+    <asp:TextBox CssClass="form-control" ID="txtEscanearCxC" runat="server" AutoPostBack="true" OnTextChanged="txtEscanearCxC_TextChanged"></asp:TextBox>
 </div>
 
           </div></div>
-  <div class="card-body"></div>
-  <div class="card-footer">Total</div>
+  <div class="card-body">
+     <asp:GridView style="font-size:10px" ID="grvCuentasPorCobrar" runat="server" AutoGenerateColumns="false" AllowPaging="true" PageSize="10" OnPageIndexChanging="grvFacturacion_PageIndexChanging" CssClass="table table-striped table-advance table-hover" ForeColor="#333333" GridLines="None" Font-Size="Smaller" Width="100%">
+    <PagerStyle CssClass="pagination-ys" />
+    <Columns>
+        <asp:BoundField DataField="Empresa" HeaderText="Empresa" />
+        <asp:BoundField DataField="NoDocumento" HeaderText="N° Fact" />
+        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+        <asp:BoundField DataField="CardCode" HeaderText="Código" />
+        <asp:BoundField DataField="CardName" HeaderText="Nombre" />
+        <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:C2}" />
+        
+        <asp:TemplateField HeaderText="Acciones">
+            <ItemTemplate>
+                <asp:ImageButton ID="btnEliminarCxC" runat="server" ImageUrl="https://cdn-icons-png.flaticon.com/512/1345/1345874.png" Width="20px" AlternateText="Eliminar" OnClick="btnEliminarCxC_Click"/>
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
+
+
+  </div>
+  <div class="card-footer">Total: <asp:Label ID="lblTotalCuentasporCobrar" runat="server" Text=""></asp:Label></div>
 </div>
+</asp:Panel>
   </div>
 </div>
 </asp:Content>
