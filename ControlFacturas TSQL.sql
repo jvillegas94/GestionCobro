@@ -47,13 +47,17 @@ NoSeq int identity(1,1) primary key,
 Empresa nvarchar(50),
 Tipo nvarchar(50),
 NoDocumento int,
+Condiciones nvarchar(100),
 Fecha date,
 CardCode nvarchar(50),
 CardName nvarchar(250),
 Total decimal(18,2),
+Usuario nvarchar(250),
 Despacho date,
 Facturacion Datetime,
 CuentasPorCobrar Datetime
 );
 go
 Select * from ControlFacturas where CuentasPorCobrar is null
+go
+ SELECT isnull(Usuario,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = 'Empagro' AND [Tipo] = 'Tipo' AND [NoDocumento] = 1031927
