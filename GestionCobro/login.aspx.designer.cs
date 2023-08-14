@@ -7,45 +7,38 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace GestionCobro {
-    
-    
-    public partial class login {
-        
+namespace GestionCobro
+{
+
+
+    public partial class Inicio
+    {
+
         /// <summary>
-        /// Control txtUsuario.
+        /// Control loginEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuario;
-        
+        protected global::System.Web.UI.WebControls.TextBox loginEmail;
+
         /// <summary>
-        /// Control txtClave.
+        /// Control loginPassword.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClave;
-        
+        protected global::System.Web.UI.WebControls.TextBox loginPassword;
+
         /// <summary>
-        /// Control lblMensaje.
+        /// Control login.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
-        
-        /// <summary>
-        /// Control btnLogin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
+        protected global::System.Web.UI.WebControls.Button login;
     }
 }

@@ -191,8 +191,9 @@
     <Content Include="img\Add.png" />
     <Content Include="img\info.png" />
     <Content Include="img\locked.png" />
-    <Content Include="js\Toastify.js" />
     <Content Include="login.aspx" />
+    <Content Include="js\Toastify.js" />
+    <Content Include="loginold.aspx" />
     <Content Include="master.Master" />
     <Content Include="GestionCobro.ruleset" />
     <Content Include="Archivos\FacturasProcesadas.json">
@@ -727,7 +728,10 @@
     <Content Include="js\sparklines.js" />
     <Content Include="js\xcharts.min.js" />
     <Content Include="liquidar.aspx" />
+    <Content Include="MrphSVGPulgin.js" />
     <Content Include="Resumen.aspx" />
+    <Content Include="script.js" />
+    <Content Include="style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -781,6 +785,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HANAConnection.cs" />
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Liquidacion.cs" />
     <Compile Include="liquidar.aspx.cs">
       <DependentUpon>liquidar.aspx</DependentUpon>
@@ -789,12 +800,12 @@
     <Compile Include="liquidar.aspx.designer.cs">
       <DependentUpon>liquidar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login.aspx.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="loginold.aspx.cs">
+      <DependentUpon>loginold.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="login.aspx.designer.cs">
-      <DependentUpon>login.aspx</DependentUpon>
+    <Compile Include="loginold.aspx.designer.cs">
+      <DependentUpon>loginold.aspx</DependentUpon>
     </Compile>
     <Compile Include="master.Master.cs">
       <DependentUpon>master.Master</DependentUpon>
