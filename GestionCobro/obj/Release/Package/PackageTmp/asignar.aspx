@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <style>
 .vl {
-  border-left: 6px solid green;
+  border-left: 6px solid gray;
   height: 50px;
   display:block;
 }
@@ -38,7 +38,7 @@
                     <div class="vl form-group"></div>
                   <div class="form-group" style="text-align:center">
                       <asp:Label runat="server" ID="Label5" Text="Omitir Ruta?"/><br/>
-                      <asp:CheckBox runat="server" ID="chkOmitir" Checked="false" />
+                      <asp:CheckBox runat="server" CssClass="checkbox" ID="chkOmitir" Checked="false" />
                   </div>
                     <div class="vl form-group"></div>
                   <div class="form-group" style="text-align:center">

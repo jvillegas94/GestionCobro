@@ -15,12 +15,21 @@ namespace GestionCobro
             {
                 try
                 {
-                    MostrarNotificacionToast(HANAConnection.Conexion().State.ToString(), "success");
+                    if (HANAConnection.Conexion().State == System.Data.ConnectionState.Open)
+                    {
+                        MostrarNotificacionToast("Conexión establecida correctamente", "success");
+                    }
+                    else
+                    {
+                        MostrarNotificacionToast("Error de comunicacion con el servidor", "error");
+                    }
                 }
                 catch (Exception ex)
                 {
                     MostrarNotificacionToast(ex.Message, "error");
                 }
+                usuario.Attributes.Clear();
+                usuario.Attributes.Add("class", "inputGroup inputGroup1 focusWithText");
             }
         }
         [System.Web.Services.WebMethod]
@@ -99,9 +108,10 @@ namespace GestionCobro
                         Session["user"] = ousr;
                         Session["dpto"] = dpto;
                     }
+                    MostrarNotificacionToast($"Bienvenido(a) {Session["user"].ToString()}", "success");
                     string osql = String.Format("Insert into Bitacora(Usuario,Accion) values('{0}','{1}')", Session["user"].ToString(), "Inicio de Sesión");
                     ConexionSQL.DML(osql);
-                    Response.Redirect("default.aspx");
+                    Response.AddHeader("REFRESH", "1;URL=Default.aspx");
 
                 }
                 else
