@@ -12,53 +12,68 @@ using System.Web;
 
 namespace GestionCobro
 {
-    public static  class HANAConnection
+    public class HANAConnection
     {
-       // private static conn = new HanaConnection("Server=192.168.0.6:30015;UserID=ADMINEMPAGRO;Password=vAmUs5M5aYd35cAk");
-        public static HanaConnection Conexion()
+
+        private static HANAConnection instance;
+        private string connectionString;
+        public static HanaConnection con;
+        private HANAConnection()
         {
-           HanaConnection  conn = new HanaConnection(
-        "Server=192.168.0.6:30015;UserID=ADMINEMPAGRO;Password=vAmUs5M5aYd35cAk");
-            if (conn == null) {
-                conn = new HanaConnection(
-            "Server=192.168.0.6:30015;UserID=ADMINEMPAGRO;Password=vAmUs5M5aYd35cAk");
-            }
-            HanaConnection.ClearAllPools();
-            if (conn.State == ConnectionState.Closed)
-            {
-                conn.Open();
-            }
-            return conn;
+            // Configurar la cadena de conexión aquí
+            connectionString = "Server=192.168.0.6:30015;UserID=ADMINEMPAGRO;Password=vAmUs5M5aYd35cAk";
         }
-        public static void CerrarConexion()
+        public static HANAConnection Instance
         {
-            HanaConnection.ClearAllPools();
-            Conexion().Close();
-            Conexion().Dispose();
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new HANAConnection();
+                }
+                return instance;
+            }
         }
 
-public static DataTable DQL(string OSQL) {
+        public HanaConnection GetConnection()
+        {
+            if (con == null)
+            {
+                con = new HanaConnection(connectionString); // Ejemplo para SQL Server
+                con.Open();
+            }
+            else
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+            }
+            return con;
+        }
+        public static DataTable DQL(string OSQL)
+        {
+            HanaConnection conn = Instance.GetConnection();
             DataTable dt;
-            HanaDataAdapter dataAdapter = new HanaDataAdapter(OSQL, Conexion());
+            HanaDataAdapter dataAdapter = new HanaDataAdapter(OSQL, conn);
             DataSet dataset = new DataSet();
             dataset.Tables.Add("aaa");
             dataAdapter.Fill(dataset, "AAA");
             dt = dataset.Tables[0];
-           CerrarConexion();
             return dt;
         }
         public static int DML(string OSQL)
         {
-            HanaCommand Cmd = new HanaCommand(OSQL, Conexion());
+            HanaConnection conn = Instance.GetConnection();
+            HanaCommand Cmd = new HanaCommand(OSQL, conn);
             int i = Cmd.ExecuteNonQuery();
-            CerrarConexion();
             return i;
         }
         public static object Excalar(string OSQL)
         {
-            HanaCommand Cmd = new HanaCommand(OSQL, Conexion());
+            HanaConnection conn = Instance.GetConnection();
+            HanaCommand Cmd = new HanaCommand(OSQL, conn);
             object i = Cmd.ExecuteScalar();
-            CerrarConexion();
             return i;
         }
     }

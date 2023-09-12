@@ -14,7 +14,7 @@ namespace GestionCobro
         {
             try
             {
-                lblMensaje.Text = HANAConnection.Conexion().State.ToString();
+                lblMensaje.Text = HANAConnection.Instance.GetConnection().State.ToString();
             }
             catch (Exception ex) {
                 lblMensaje.Text = ex.Message;

@@ -15,7 +15,7 @@ namespace GestionCobro
             {
                 try
                 {
-                    if (HANAConnection.Conexion().State == System.Data.ConnectionState.Open)
+                    if (HANAConnection.Instance.GetConnection().State == System.Data.ConnectionState.Open)
                     {
                         MostrarNotificacionToast("Conexión establecida correctamente", "success");
                     }
