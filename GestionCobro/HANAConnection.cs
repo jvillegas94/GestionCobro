@@ -53,27 +53,27 @@ namespace GestionCobro
         }
         public static DataTable DQL(string OSQL)
         {
-            HanaConnection conn = Instance.GetConnection();
             DataTable dt;
-            HanaDataAdapter dataAdapter = new HanaDataAdapter(OSQL, conn);
+            HanaDataAdapter dataAdapter = new HanaDataAdapter(OSQL, Instance.GetConnection());
             DataSet dataset = new DataSet();
             dataset.Tables.Add("aaa");
             dataAdapter.Fill(dataset, "AAA");
             dt = dataset.Tables[0];
+            Instance.GetConnection().Close();
             return dt;
         }
         public static int DML(string OSQL)
         {
-            HanaConnection conn = Instance.GetConnection();
-            HanaCommand Cmd = new HanaCommand(OSQL, conn);
+            HanaCommand Cmd = new HanaCommand(OSQL, Instance.GetConnection());
             int i = Cmd.ExecuteNonQuery();
+            Instance.GetConnection().Close();
             return i;
         }
         public static object Excalar(string OSQL)
         {
-            HanaConnection conn = Instance.GetConnection();
-            HanaCommand Cmd = new HanaCommand(OSQL, conn);
+            HanaCommand Cmd = new HanaCommand(OSQL, Instance.GetConnection());
             object i = Cmd.ExecuteScalar();
+            Instance.GetConnection().Close();
             return i;
         }
     }
