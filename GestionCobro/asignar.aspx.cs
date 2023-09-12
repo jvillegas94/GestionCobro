@@ -6,6 +6,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -248,7 +250,6 @@ namespace GestionCobro
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+ex.Message+"');", true);
             }
         }
-
         private void Registrar(string selectedValue)
         {
             string osql = "";

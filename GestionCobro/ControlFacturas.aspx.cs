@@ -27,6 +27,8 @@ namespace GestionCobro
             {
                 if (Session["dpto"] != null)
                 {
+                    txtDesde.Text = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd");
+                    txtHasta.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     CargarFacturacion();
                     CargarDatos();
                     this.Label1.Text = Session["dpto"].ToString();
@@ -141,47 +143,71 @@ namespace GestionCobro
         }
         protected void CargarDatos()
         {
-            DataTable dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
-                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
-                                   "WHERE DAYS_BETWEEN(\"Fecha\", CURRENT_DATE) <= 7");
-            DataTable dt1 = ConexionSQL.consultaDataTable("Select Empresa,NoDocumento from [GestionCobroBD].[dbo].ControlFacturas", "Facturas");
-
-            // Crear un HashSet para almacenar las combinaciones Empresa y NoDocumento de dt1
-            HashSet<Tuple<string, int>> dt1Set = new HashSet<Tuple<string, int>>();
-
-            // Llenar el HashSet con las combinaciones Empresa y NoDocumento de dt1
-            foreach (DataRow row in dt1.Rows)
+            string desdeString = txtDesde.Text;
+            string hastaString = txtHasta.Text;
+            DateTime desde, hasta;
+            if (DateTime.TryParseExact(desdeString, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out desde) &&
+    DateTime.TryParseExact(hastaString, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out hasta))
             {
-                string empresa = row["Empresa"].ToString();
-                int noDocumento = Convert.ToInt32(row["NoDocumento"]);
-                dt1Set.Add(new Tuple<string, int>(empresa, noDocumento));
-            }
-
-            // Iterar en reverso por el DataTable y eliminar las filas que coinciden
-            for (int i = dt.Rows.Count - 1; i >= 0; i--)
-            {
-                string empresa = dt.Rows[i]["BD"].ToString();
-                int noDocumento = Convert.ToInt32(dt.Rows[i]["NoFact"]);
-
-                if (dt1Set.Contains(new Tuple<string, int>(empresa, noDocumento)))
+                // Las conversiones fueron exitosas, ahora puedes comparar las fechas.
+                if (desde <= hasta)
                 {
-                    dt.Rows.RemoveAt(i);
+                    DataTable dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
+                                   "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
+                                   $"WHERE \"Fecha\" between '{desdeString}' and '{hastaString}'");
+                    DataTable dt1 = ConexionSQL.consultaDataTable("Select Empresa,NoDocumento from [GestionCobroBD].[dbo].ControlFacturas", "Facturas");
+
+                    // Crear un HashSet para almacenar las combinaciones Empresa y NoDocumento de dt1
+                    HashSet<Tuple<string, int>> dt1Set = new HashSet<Tuple<string, int>>();
+
+                    // Llenar el HashSet con las combinaciones Empresa y NoDocumento de dt1
+                    foreach (DataRow row in dt1.Rows)
+                    {
+                        string empresa = row["Empresa"].ToString();
+                        int noDocumento = Convert.ToInt32(row["NoDocumento"]);
+                        dt1Set.Add(new Tuple<string, int>(empresa, noDocumento));
+                    }
+
+                    // Iterar en reverso por el DataTable y eliminar las filas que coinciden
+                    for (int i = dt.Rows.Count - 1; i >= 0; i--)
+                    {
+                        string empresa = dt.Rows[i]["BD"].ToString();
+                        int noDocumento = Convert.ToInt32(dt.Rows[i]["NoFact"]);
+
+                        if (dt1Set.Contains(new Tuple<string, int>(empresa, noDocumento)))
+                        {
+                            dt.Rows.RemoveAt(i);
+                        }
+                    }
+                    if (dt.Rows.Count > 0)
+                    {
+                        FacturasPendiente.DataSource = dt;
+                        FacturasPendiente.DataBind();
+                    }
+                    else
+                    {
+
+                        FacturasPendiente.DataSource = null;
+                        FacturasPendiente.DataBind();
+                    }
+                    DateTime fechaDespacho = DateTime.Now.AddDays(-7);
+                    string fechaDespachoFormateada = fechaDespacho.ToString("dd/MM/yyyy");
+                    lblFechaDespacho.Text = $"{desdeString} al {hastaString}";
+                }
+                else
+                {
+                    // Desde es mayor o igual que Hasta, el rango no es válido.
+                    // Puedes mostrar un mensaje de error o tomar la acción correspondiente.
+                    // Por ejemplo:
+                    // Response.Write("La fecha Desde debe ser menor que la fecha Hasta.");
+
+                    MostrarNotificacionToast($"El rango de fechas no es válido", "error");
                 }
             }
-            if (dt.Rows.Count > 0)
+            else
             {
-                FacturasPendiente.DataSource = dt;
-                FacturasPendiente.DataBind();
+                MostrarNotificacionToast($"Los valores deben ser fechas válidas", "error");
             }
-            else {
-
-                FacturasPendiente.DataSource = null;
-                FacturasPendiente.DataBind();
-            }
-            DateTime fechaDespacho = DateTime.Now.AddDays(-7);
-            string fechaDespachoFormateada = fechaDespacho.ToString("dd/MM/yyyy");
-            lblFechaDespacho.Text = fechaDespachoFormateada;
-
         }
         protected void CargarFacturacion()
         {
@@ -426,8 +452,10 @@ namespace GestionCobro
     Toastify({{ 
         text: '{mensaje}',
         duration: 3000,
-        position: 'toast.POSITION.TOP_CENTER', // Cambia la posición a 'top'
-        gravity: 'top', // Cambia la gravedad a 'center'
+        close: true,
+        gravity: 'top', // `top` or `bottom`
+        position: 'left', // `left`, `center` or `right`
+        stopOnFocus: true,
         backgroundColor: {(tipo == "success" ? "'#4caf50'" : "'#f44336'")}
     }}).showToast();";
 
@@ -519,6 +547,11 @@ namespace GestionCobro
                     ExportToExcel(CuentasporCobrar, "CxC");
                     break;
             }
+        }
+
+        protected void txtDesde_TextChanged(object sender, EventArgs e)
+        {
+            CargarDatos();
         }
     }
 }

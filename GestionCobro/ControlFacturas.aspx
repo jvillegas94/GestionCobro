@@ -77,7 +77,21 @@
    <div class="row">
   <div class="col-sm-4 col-lg-4">
       <div class="card">
-  <div class="card-header  bg-primary text-white">Despacho <asp:ImageButton CssClass="form-control" runat="server" ID="ibtnAsignados" CommandName="Despacho" ImageUrl="~/img/XLS.png" Width="35px" OnClick="ibtnAsignados_Click"/>
+  <div class="card-header  bg-primary text-white">
+      <div class="form-inline">
+          <div class="form-group">
+      Despacho 
+              </div>
+          <div class="form-group">
+      <asp:ImageButton CssClass="form-control" runat="server" ID="ibtnAsignados" CommandName="Despacho" ImageUrl="~/img/XLS.png" Width="35px" OnClick="ibtnAsignados_Click"/>
+          </div>
+          <div class="form-group">
+              <asp:TextBox runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtDesde_TextChanged" ID="txtDesde" TextMode="Date"/>
+              </div>
+          <div class="form-group">
+              <asp:TextBox runat="server" OnTextChanged="txtDesde_TextChanged" AutoPostBack="true" CssClass="form-control" ID="txtHasta" TextMode="Date"/>
+              </div>
+          </div>
   </div>
   <div class="card-body">
       <asp:Panel runat="server" ScrollBars="Horizontal" Width="100%">
