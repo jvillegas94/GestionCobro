@@ -103,7 +103,7 @@
 	<!-- Footer con leyenda de copyright -->
 <footer class="bg-dark text-white py-3" style="position:fixed;margin-bottom:0;bottom:0px;width:100%">
     <div class="container text-center">
-        <p>&copy; <span id="year"></span> Elaborado por Luis Miguel Bolaños Mejias</p>
+        <p>&copy; <span id="year"></span> Elaborado por Luis Miguel Bolaños Mejias v. 2023.09.13</p>
     </div>
 </footer>
     </section>
