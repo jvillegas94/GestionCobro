@@ -21,9 +21,9 @@ namespace GestionCobro
                 SqlConnectionStringBuilder osql = new SqlConnectionStringBuilder
                 {
                     InitialCatalog = "BRC_BD",
-                    UserID = "master",
+                    UserID = "sa",
                     Password = "Empagro2017",
-                    DataSource = "192.168.0.3"
+                    DataSource = @"192.168.0.3\MSSQLSERVER1"
                 };
                 conn = new SqlConnection(osql.ConnectionString);
                 if (conn.State == ConnectionState.Closed)

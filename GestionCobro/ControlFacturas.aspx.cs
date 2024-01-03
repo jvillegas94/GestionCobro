@@ -155,7 +155,7 @@ namespace GestionCobro
                     DataTable dt = HANAConnection.DQL("SELECT \"BD\", \"NoFact\", TO_VARCHAR(\"Fecha\", 'dd/MM/yyyy') AS \"Fecha\", \"CardCode\", \"CardName\", \"DocTotal\", (\"BD\" || \"NoFact\") AS \"Filtro\" " +
                                    "FROM \"SB1LD_EPG_PRO\".\"VW_Facturas\" " +
                                    $"WHERE \"Fecha\" between '{desdeString}' and '{hastaString}'");
-                    DataTable dt1 = ConexionSQL.consultaDataTable("Select Empresa,NoDocumento from [GestionCobroBD].[dbo].ControlFacturas", "Facturas");
+                    DataTable dt1 = ConexionSQL.consultaDataTable("Select Empresa,NoDocumento from ControlFacturas", "Facturas");
 
                     // Crear un HashSet para almacenar las combinaciones Empresa y NoDocumento de dt1
                     HashSet<Tuple<string, int>> dt1Set = new HashSet<Tuple<string, int>>();
@@ -211,9 +211,9 @@ namespace GestionCobro
         }
         protected void CargarFacturacion()
         {
-            DataTable dt = ConexionSQL.consultaDataTable("Select * from [GestionCobroBD].[dbo].ControlFacturas where CuentasPorCobrar is null", "ControlFacturas");
+            DataTable dt = ConexionSQL.consultaDataTable("Select * from ControlFacturas where CuentasPorCobrar is null", "ControlFacturas");
 
-            DataTable dt1 = ConexionSQL.consultaDataTable("Select * from [GestionCobroBD].[dbo].ControlFacturas where CuentasPorCobrar is not null", "ControlFacturas");
+            DataTable dt1 = ConexionSQL.consultaDataTable("Select * from ControlFacturas where CuentasPorCobrar is not null", "ControlFacturas");
 
             if (dt.Rows.Count > 0)
             {
@@ -320,10 +320,10 @@ namespace GestionCobro
                                 DateTime despacho = fecha; // Define el valor de despacho adecuado
                                 DateTime facturacion = DateTime.Now; // Define el valor de facturación adecuado
 
-                                string insertQuery = $@"set dateformat ymd;INSERT INTO [GestionCobroBD].[dbo].[ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],UsuarioFacturacion) VALUES('{empresa}','{Tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}','{total.ToString().Replace(",",".")}','{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
+                                string insertQuery = $@"set dateformat ymd;INSERT INTO [ControlFacturas]([Empresa],[Tipo],[NoDocumento],[Fecha],[CardCode],[CardName],[Total],[Despacho],[Facturacion],UsuarioFacturacion) VALUES('{empresa}','{Tipo}',{noDocumento},'{fecha:yyyy-MM-dd}','{cardCode}','{cardName}','{total.ToString().Replace(",",".")}','{despacho:yyyy-MM-dd}','{facturacion:yyyy-MM-dd HH:mm:ss}','{Session["user"].ToString()}');";
                                 string script = $"{insertQuery.Replace("'", "\\'")}";
 
-                                string checkIfExistsQuery = $@"SELECT isnull(UsuarioFacturacion,'') FROM [GestionCobroBD].[dbo].[ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{Tipo}' AND [NoDocumento] = {noDocumento}";
+                                string checkIfExistsQuery = $@"SELECT isnull(UsuarioFacturacion,'') FROM [ControlFacturas] WHERE [Empresa] = '{empresa}' AND [Tipo] = '{Tipo}' AND [NoDocumento] = {noDocumento}";
                                 //MostrarNotificacionToast(insertQuery,"success");
                                /* master masterPage = this.Master as master;
 
@@ -412,11 +412,11 @@ namespace GestionCobro
                             Tipo = "NC";
                             break;
                     }
-                    String osql = $"Select * from [GestionCobroBD].[dbo].[ControlFacturas] where Empresa='{Empresa}' and NoDocumento='{NumeroFact}' and CuentasPorCobrar is null";
+                    String osql = $"Select * from [ControlFacturas] where Empresa='{Empresa}' and NoDocumento='{NumeroFact}' and CuentasPorCobrar is null";
                     dt = ConexionSQL.consultaDataTable(osql, "ControlDespacho");
                     if (dt.Rows.Count> 0)
                     {
-                        osql = $@"Update a set CuentasPorCobrar=getdate(),UsuarioCuentasporCobrar='{Session["user"].ToString()}' from [GestionCobroBD].[dbo].[ControlFacturas] a where Empresa='{Empresa}' and NoDocumento={NumeroFact}; ";
+                        osql = $@"Update a set CuentasPorCobrar=getdate(),UsuarioCuentasporCobrar='{Session["user"].ToString()}' from [ControlFacturas] a where Empresa='{Empresa}' and NoDocumento={NumeroFact}; ";
                         int i = ConexionSQL.DML(osql);
                         if (i > 0)
                         {
@@ -479,7 +479,7 @@ namespace GestionCobro
             string empresa = row.Cells[0].Text; // Obtén la Empresa de la primera celda
             int noDocumento = Convert.ToInt32(row.Cells[1].Text); // Obtén el NoDocumento de la segunda celda
 
-            String osql = $"Delete from [GestionCobroBD].[dbo].[ControlFacturas] where Empresa='{empresa}' and NoDocumento='{noDocumento}'";
+            String osql = $"Delete from [ControlFacturas] where Empresa='{empresa}' and NoDocumento='{noDocumento}'";
             int i =ConexionSQL.DML(osql);
             if (i > 0) {
                 MostrarNotificacionToast($"Documento eliminado correctamente", "success");
@@ -503,7 +503,7 @@ namespace GestionCobro
             string empresa = row.Cells[0].Text; // Obtén la Empresa de la primera celda
             int noDocumento = Convert.ToInt32(row.Cells[1].Text); // Obtén el NoDocumento de la segunda celda
 
-            String osql = $"Update a set CuentasPorCobrar=null from [GestionCobroBD].[dbo].[ControlFacturas] a where Empresa='{empresa}' and NoDocumento='{noDocumento}'";
+            String osql = $"Update a set CuentasPorCobrar=null from [ControlFacturas] a where Empresa='{empresa}' and NoDocumento='{noDocumento}'";
             int i = ConexionSQL.DML(osql);
             if (i > 0)
             {
@@ -537,12 +537,12 @@ namespace GestionCobro
             ExportToExcel(despacho,"Despacho");
                     break;
                 case "Facturacion":
-                    String osql = $"Select * from [GestionCobroBD].[dbo].[ControlFacturas] where CuentasPorCobrar is null";
+                    String osql = $"Select * from [ControlFacturas] where CuentasPorCobrar is null";
                     facturacion = ConexionSQL.consultaDataTable(osql, "Facturacion");
                     ExportToExcel(facturacion, "Facturacion");
                     break;
                 case "CxC":
-            String osql1 = $"Select * from [GestionCobroBD].[dbo].[ControlFacturas] where CuentasPorCobrar is not null";
+            String osql1 = $"Select * from [ControlFacturas] where CuentasPorCobrar is not null";
             CuentasporCobrar = ConexionSQL.consultaDataTable(osql1, "CuentasPorCobrar");
                     ExportToExcel(CuentasporCobrar, "CxC");
                     break;

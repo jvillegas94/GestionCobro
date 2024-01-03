@@ -7,7 +7,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>\\192.168.0.3\wwwroot\GestionCobro</_PublishTargetUrl>
-    <History>True|2023-09-14T01:34:51.4995850Z;</History>
+    <History>True|2024-01-03T21:26:38.4311672Z;True|2024-01-03T15:09:06.4904670-06:00;True|2023-09-13T19:34:51.4995850-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Archivos/configuracion.json">
@@ -1340,10 +1340,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/13/2023 18:58:39</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/13/2023 19:33:23</publishTime>
+      <publishTime>01/03/2024 15:24:58</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/13/2023 19:33:23</publishTime>
+      <publishTime>01/03/2024 15:24:58</publishTime>
     </File>
     <File Include="bin/Archivos/FacturasProcesadas.json">
       <publishTime>09/13/2023 18:53:52</publishTime>
@@ -1403,10 +1403,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2017 07:08:20</publishTime>
     </File>
     <File Include="bin/GestionCobro.dll">
-      <publishTime>09/13/2023 19:16:08</publishTime>
+      <publishTime>01/03/2024 15:24:44</publishTime>
     </File>
     <File Include="bin/GestionCobro.pdb">
-      <publishTime>09/13/2023 19:16:08</publishTime>
+      <publishTime>01/03/2024 15:24:44</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNetCore.WebUtilities.dll">
       <publishTime>09/13/2023 18:58:40</publishTime>
@@ -2378,7 +2378,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/13/2023 18:53:50</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/13/2023 19:33:16</publishTime>
+      <publishTime>01/03/2024 15:24:48</publishTime>
     </File>
     <File Include="Resumen.aspx">
       <publishTime>09/13/2023 18:53:50</publishTime>
